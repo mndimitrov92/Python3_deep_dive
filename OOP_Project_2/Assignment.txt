@@ -1,1 +1,32 @@
-TODO
+Modular arithmetic
+
+->assume n is a positive integer
+->assume all the numbers (a and b)  are integers
+->the resudue of a mod n is a%n
+Two numbers a and b are said to be congruent modulo n: a=b (mod n)
+	-> if the resudues are equal : a%n == b%n
+Example:
+	 7 % 12 =7    ->7 is confruent to 19 modulo 12
+	19 % 12 = 7
+
+Project:
+-create a class called Mod 
+-initialize with value and modulus arguments (read-only )
+	- ensure that the value and modulus are both integers 
+	- modulus should be positive
+-store the value as the residue (i.e if value=8 and modulus=3 store value as 2 (8%3))
+-implement congruence for the == operator
+	-allow the comparison of Mod object to an int(in which case use the residue of the int)
+	-allow comparison of 2 Mod objects only if they have the same modulus 
+	-ensure objects are hashable so we use them as keys in a set dict etc. 
+-provide an implementation so that int(mod_object) will return the residue
+- provide a proper representation
+-implement the operators +, - ,*, ** 
+	- support other operand to be Mod(with same modulus only)
+	- support other operand to be an int (and use the smae modulus)
+	- always return a Mod instance
+		perform the +, - ,* ,** operations on the values
+			i.e Mod(2,3) + 16 -> Mod(2+16,3) -> Mod(0,3)  (18%3=0)
+-implement the corresponding in place arithmetic operations
+-implement ordering (making sense since we are comparing residues)
+	- support other operand to be a Mod(with the same modulus), or an integer  
