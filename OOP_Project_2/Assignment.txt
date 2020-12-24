@@ -23,7 +23,7 @@ Project:
 - provide a proper representation
 -implement the operators +, - ,*, ** 
 	- support other operand to be Mod(with same modulus only)
-	- support other operand to be an int (and use the smae modulus)
+	- support other operand to be an int (and use the same modulus)
 	- always return a Mod instance
 		perform the +, - ,* ,** operations on the values
 			i.e Mod(2,3) + 16 -> Mod(2+16,3) -> Mod(0,3)  (18%3=0)
