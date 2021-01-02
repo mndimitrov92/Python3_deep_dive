@@ -1,1 +1,26 @@
-TODO
+We have a project where we need to define classes that have fields that we want validated before we set their value.
+This might be because these objects might later be serialized into a database and we need to ensure that the data is valid before we write to the database.
+
+Part 1:
+Write 2 data descriptors:
+	- IntegerField -> only allows integral numbers between min and max value
+	- CharField -> only allows strings with min and max length
+
+We want to be able to use the descriptors like this:
+class Person:
+	age  = IntegerField(0, 50)
+	name = CharField(1, 20)
+
+Assume classes are not limited by __slots__
+
+Part 2:
+You probably wrote two unrelated classes to do this.
+But there is quite a bit of code duplication, with only the actual validation being different
+
+Use inheritance and Rrefactor your code and create a BaseValidator class(also a descriptor) that will handle the common functionality.
+Then change integerField and CharField descriptors to inherit from BaseValidator. 
+If you haven't coded your descriptors that way already make sure that you can also omit one or both of the min and max values where it makes sense.
+
+For example we may want to specify a string with no max value or maybe an integer field that only has an upper bound or no bounds at all.
+
+Write the corresponding tests as well.
