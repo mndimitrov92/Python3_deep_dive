@@ -1,1 +1,33 @@
-TODO
+Let's say we need a consistent set of application exceptions.
+In many cases we want to have an easy way to generate exceptions.
+	-> consistent exception types
+	-> assiciated exception code
+	-> associated default exception
+	-> provide the ability for the user to list out all the possible exceptions in the app 
+This is comment when writing REST APIs for example.
+
+Take approach to solve this problem by using enums.
+
+Functionality:
+-> single enumeration AppException
+-> exceptions have a name(key) and 3 associated values
+Example:
+	name = NotAnInteger 
+			- code (e.g. 100)
+			- default message (e.g. "Value is not an integer.")
+			- associaed exception (e.g. ValueError )
+-> lookup the exception by key(name) or by code(value)
+AppException['NotAnInteger'] or AppException(100)
+-> method to raise an exception
+	AppException.Timeout.throw()
+-> ability to override default exception when throwing exception 
+	AppException.Timeout.throw("Timeout connecting to socket.")
+Tips:
+-enumeration members will be defined using a tuple containing 3 values
+	-> code
+	-> exception type (class name)
+	-> default message
+	Ex: NotAmInteger = 100, ValueError, "Value is not an integer."
+use the __new__ approach I showed you earlier
+make the value the error code
+Provide an additional property for message
